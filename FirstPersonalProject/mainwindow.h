@@ -27,7 +27,8 @@ class MainWindow : public QMainWindow {
         QWidget* buttonWidget;
         QHBoxLayout* layoutHoriz;
         QVBoxLayout* layoutVert;
-        QPushButton* buttonRandom;
+        QPushButton* buttonRandom, buttonBarbarian, buttonBard, buttonDruid, buttonMonk,
+                     buttonPaladin, buttonRanger, buttonSorcerer, buttonWarlock;
         QTextEdit* statDisplay;
 
 
