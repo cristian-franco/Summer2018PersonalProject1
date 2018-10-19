@@ -3,12 +3,14 @@
 
 #include <QMainWindow>
 #include <QWidget>
-#include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QPushButton>
 #include <QTextEdit>
+
+#include <QTextStream>
+#include <vector>
 
 namespace Ui {
     class MainWindow;
@@ -20,6 +22,7 @@ class MainWindow : public QMainWindow {
     public:
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
+        QTextEdit* statDisplay;
 
     private:
         Ui::MainWindow *ui;
@@ -27,9 +30,14 @@ class MainWindow : public QMainWindow {
         QWidget* buttonWidget;
         QHBoxLayout* layoutHoriz;
         QVBoxLayout* layoutVert;
-        QPushButton* buttonRandom, buttonBarbarian, buttonBard, buttonDruid, buttonMonk,
-                     buttonPaladin, buttonRanger, buttonSorcerer, buttonWarlock;
-        QTextEdit* statDisplay;
+        QPushButton* buttonRandom;
+        std::vector <int> stats, mods;
+        std::vector <QString> statsString, modsString;
+
+
+
+    public slots:
+        void gdStats();
 
 
 
