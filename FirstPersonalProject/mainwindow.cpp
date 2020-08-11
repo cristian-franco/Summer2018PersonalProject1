@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowTitle("DnD Character Center");
 
-    std::vector <int> stats;
+    //std::vector <int> stats;
 
 
     QWidget* buttonWidget = new QWidget;
@@ -27,8 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     layoutVert->addWidget(buttonRandom);
-/*    layoutVert->addWidget(buttonBarbarian);
-    layoutVert->addWidget(buttonBard);
+    //layoutVert->addWidget(buttonBarbarian);
+    /*layoutVert->addWidget(buttonBard);
     layoutVert->addWidget(buttonDruid);
     layoutVert->addWidget(buttonMonk);
     layoutVert->addWidget(buttonPaladin);
@@ -76,7 +76,26 @@ void MainWindow::gdStats() {
     modsString.clear();
 
     for (int i = 0; i < 6; i++) {
-        int stat = rand() % 20 + 1;
+
+        // new way, roll 4d6, remove smallest number
+        std::vector <int> tempStat;
+        int tempVal;
+        for (int j = 0; j < 4; j++) {
+            tempVal = rand() % 6 + 1;
+            tempStat.push_back(tempVal);
+        }
+
+        // remove lowest value, index 0, after sorting
+        std::sort(tempStat.begin(), tempStat.begin() + 4);
+        tempStat.erase(tempStat.begin());
+
+        int stat = 0;
+        for (int x = 0; x < tempStat.size(); x++) {
+            stat += tempStat.at(x);
+        }
+
+        // old way, random number
+        //int stat = rand() % 20 + 1;
 
         QString statString = QString::number(stat);
 

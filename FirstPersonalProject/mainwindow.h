@@ -11,6 +11,7 @@
 
 #include <QTextStream>
 #include <vector>
+#include <algorithm>
 
 namespace Ui {
     class MainWindow;
