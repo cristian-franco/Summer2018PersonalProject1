@@ -7,7 +7,7 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QPushButton>
-#include <QTextEdit>
+#include <QPlainTextEdit>
 
 #include <QTextStream>
 #include <vector>
@@ -38,7 +38,7 @@ class MainWindow : public QMainWindow {
 
 
     public slots:
-        void gdStats();
+        void gdStats(const int);
 
 
 

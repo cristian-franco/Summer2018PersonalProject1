@@ -11,33 +11,30 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //std::vector <int> stats;
 
-
     QWidget* buttonWidget = new QWidget;
     QVBoxLayout* layoutVert = new QVBoxLayout;
     QPushButton* buttonRandom = new QPushButton("Random");
-    //QPushButton* buttonBarbarian = new QPushButton("Barbarian");
-    //QPushButton* buttonBard = new QPushButton("Bard");
-    //QPushButton* buttonDruid = new QPushButton("Druid");
-    //QPushButton* buttonMonk = new QPushButton("Monk");
-    //QPushButton* buttonPaladin = new QPushButton("Paladin");
-    //QPushButton* buttonRanger = new QPushButton("Ranger");
-    //QPushButton* buttonSorcerer = new QPushButton("Sorcerer");
-    //QPushButton* buttonWarlock = new QPushButton("Warlock");
-
-
+    QPushButton* buttonBarbarian = new QPushButton("Barbarian");
+    QPushButton* buttonBard = new QPushButton("Bard");
+    QPushButton* buttonDruid = new QPushButton("Druid");
+    QPushButton* buttonMonk = new QPushButton("Monk");
+    QPushButton* buttonPaladin = new QPushButton("Paladin");
+    QPushButton* buttonRanger = new QPushButton("Ranger");
+    QPushButton* buttonSorcerer = new QPushButton("Sorcerer");
+    QPushButton* buttonWarlock = new QPushButton("Warlock");
 
     layoutVert->addWidget(buttonRandom);
-    //layoutVert->addWidget(buttonBarbarian);
-    /*layoutVert->addWidget(buttonBard);
+    layoutVert->addWidget(buttonBarbarian);
+    layoutVert->addWidget(buttonBard);
     layoutVert->addWidget(buttonDruid);
     layoutVert->addWidget(buttonMonk);
     layoutVert->addWidget(buttonPaladin);
     layoutVert->addWidget(buttonRanger);
     layoutVert->addWidget(buttonSorcerer);
-    layoutVert->addWidget(buttonWarlock)*/;
+    layoutVert->addWidget(buttonWarlock);
     buttonWidget->setLayout(layoutVert);
 
-    QTextEdit* statDisplay = new QTextEdit();
+    QPlainTextEdit* statDisplay = new QPlainTextEdit();
     statDisplay->setObjectName("STATS");
 
     QWidget* mainWidget = new QWidget();
@@ -50,7 +47,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setCentralWidget(mainWidget);
 
-    connect(buttonRandom, SIGNAL (clicked()), this, SLOT (gdStats()));
+    // connect all button signals to same slot that will take argument and generate stats
+    connect(buttonRandom, SIGNAL (clicked()), this, SLOT (randomSlot()));
+//    connect(buttonBarbarian, SIGNAL (clicked()), this, SLOT (createMods()));
+//    connect(buttonBard, SIGNAL (clicked()), this, SLOT (createMods()));
+//    connect(buttonDruid, SIGNAL (clicked()), this, SLOT (createMods()));
+//    connect(buttonMonk, SIGNAL (clicked()), this, SLOT (createMods()));
+//    connect(buttonPaladin, SIGNAL (clicked()), this, SLOT (createMods()));
+//    connect(buttonRanger, SIGNAL (clicked()), this, SLOT (createMods()));
+//    connect(buttonSorcerer, SIGNAL (clicked()), this, SLOT (createMods()));
+//    connect(buttonWarlock, SIGNAL (clicked()), this, SLOT (createMods()));
+
 }
 
 MainWindow::~MainWindow()
@@ -58,68 +65,22 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::gdStats() {
 
-    //QTextStream cout(stdout);
-    //cout << "Hello there" << endl;
+void MainWindow::randomSlot() {
 
-    QList<QTextEdit *> text = centralWidget()->findChildren<QTextEdit *>();
-
-//    cout << text.isEmpty() << endl;
-//    cout << text.size() << endl;
-
-    QTextEdit* disp = text.at(0);
+    // findChildren returns a QList of type in <>
+    // findChild will return a single object of type in <>
+    QPlainTextEdit* disp = centralWidget()->findChild<QPlainTextEdit *>("STATS");
 
     stats.clear();
     mods.clear();
     statsString.clear();
     modsString.clear();
 
-    for (int i = 0; i < 6; i++) {
+    vector<int> stats = generateStats();
+    createMods(stats);
 
-        // new way, roll 4d6, remove smallest number
-        std::vector <int> tempStat;
-        int tempVal;
-        for (int j = 0; j < 4; j++) {
-            tempVal = rand() % 6 + 1;
-            tempStat.push_back(tempVal);
-        }
-
-        // remove lowest value, index 0, after sorting
-        std::sort(tempStat.begin(), tempStat.begin() + 4);
-        tempStat.erase(tempStat.begin());
-
-        int stat = 0;
-        for (int x = 0; x < tempStat.size(); x++) {
-            stat += tempStat.at(x);
-        }
-
-        // old way, random number
-        //int stat = rand() % 20 + 1;
-
-        QString statString = QString::number(stat);
-
-        //cout << i << " " << stat << endl;
-
-        int mod = (stat / 2) - 5;
-
-        QString modString = "(";
-        if (mod > -1) {
-            modString.append("+");
-        }
-        modString.append(QString::number(mod));
-        modString.append(")");
-
-        //cout << i <<  " " << modString << endl;
-
-        statsString.push_back(statString);
-        modsString.push_back(modString);
-
-        stats.push_back(stat);
-        mods.push_back(mod);
-    }
-
-    disp->setText("Stats:\n");
+    disp->setPlainText("Stats:\n");
 
     QString strengthLine = "STR  |  ";
     strengthLine.append(statsString.at(0));
@@ -151,20 +112,73 @@ void MainWindow::gdStats() {
     charismaLine.append(" ");
     charismaLine.append(modsString.at(5));
 
-    disp->append(strengthLine);
-    disp->append(dexterityLine);
-    disp->append(constitutionLine);
-    disp->append(intelligenceLine);
-    disp->append(wisdomLine);
-    disp->append(charismaLine);
+    disp->appendPlainText(strengthLine);
+    disp->appendPlainText(dexterityLine);
+    disp->appendPlainText(constitutionLine);
+    disp->appendPlainText(intelligenceLine);
+    disp->appendPlainText(wisdomLine);
+    disp->appendPlainText(charismaLine);
+}
 
+//void MainWindow::createMods() {
 
+//}
 
-//    QString nextStat = QString::number(stats.at(0));
+//void MainWindow::createMods() {
 
-//    disp->append(nextStat);
+//}
 
-    //cout << "\nGeneral Kenobi" << endl;
+//void MainWindow::createMods() {
 
+//}
+
+// HELPER FUNCTION
+// default stat generation function
+// only generate vector int of stats
+// modifiers calculated in slots
+vector<int> generateStats() {
+
+    for (int i = 0; i < 6; i++) {
+
+        // new way, roll 4d6, remove smallest number
+        std::vector <int> tempStat;
+        int tempVal;
+        for (int j = 0; j < 4; j++) {
+            tempVal = rand() % 6 + 1;
+            tempStat.push_back(tempVal);
+        }
+
+        // remove lowest value, index 0, after sorting
+        std::sort(tempStat.begin(), tempStat.begin() + 4);
+        tempStat.erase(tempStat.begin());
+
+        int stat = 0;
+        for (int x = 0; x < tempStat.size(); x++) {
+            stat += tempStat.at(x);
+        }
+
+        QString statString = QString::number(stat);
+
+        int mod = (stat / 2) - 5;
+
+        QString modString = "(";
+        if (mod > -1) {
+            modString.append("+");
+        }
+        modString.append(QString::number(mod));
+        modString.append(")");
+
+        statsString.push_back(statString);
+        modsString.push_back(modString);
+
+        stats.push_back(stat);
+        mods.push_back(mod);
+    }
+}
+
+// HELPER FUNCTION
+// Setup the strings to append to display
+vector<int> createMods() {
 
 }
+
