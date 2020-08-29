@@ -8,6 +8,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QPlainTextEdit>
+#include <QLabel>
 
 #include <QTextStream>
 #include <vector>
@@ -34,11 +35,14 @@ class MainWindow : public QMainWindow {
         QPushButton* buttonRandom;
         std::vector <int> stats, mods;
         std::vector <QString> statsString, modsString;
+        std::vector<int> generateStats();
+        std::vector<int> createMods(std::vector<int> stats);
+        QString createDisplayString(std::vector<QString> statsString, std::vector<QString> modsString);
 
 
 
     public slots:
-        void gdStats(const int);
+        void randomSlot();
 
 
 

@@ -34,7 +34,9 @@ MainWindow::MainWindow(QWidget *parent) :
     layoutVert->addWidget(buttonWarlock);
     buttonWidget->setLayout(layoutVert);
 
-    QPlainTextEdit* statDisplay = new QPlainTextEdit();
+    //QPlainTextEdit* statDisplay = new QPlainTextEdit();
+    //statDisplay->setObjectName("STATS");
+    QLabel* statDisplay = new QLabel();
     statDisplay->setObjectName("STATS");
 
     QWidget* mainWidget = new QWidget();
@@ -70,17 +72,89 @@ void MainWindow::randomSlot() {
 
     // findChildren returns a QList of type in <>
     // findChild will return a single object of type in <>
-    QPlainTextEdit* disp = centralWidget()->findChild<QPlainTextEdit *>("STATS");
+    //QPlainTextEdit* disp = centralWidget()->findChild<QPlainTextEdit *>("STATS");
+    QLabel* disp = centralWidget()->findChild<QLabel *>("STATS");
 
     stats.clear();
     mods.clear();
     statsString.clear();
     modsString.clear();
 
-    vector<int> stats = generateStats();
-    createMods(stats);
+    std::vector<int> stats = generateStats();
+    std::vector<int> mods = createMods(stats);
+//------------------
+    for (int g = 0; g < 6; g++) {
+        QString statString = QString::number(stats.at(g));
 
-    disp->setPlainText("Stats:\n");
+        QString modString = "(";
+        if (mods.at(g) > -1) {
+            modString.append("+");
+        }
+        modString.append(QString::number(mods.at(g)));
+        modString.append(")");
+
+        statsString.push_back(statString);
+        modsString.push_back(modString);
+    }
+
+//----------------
+    // label
+    QString finalString = createDisplayString(statsString, modsString);
+
+    disp->setText(finalString);
+
+}
+
+// HELPER FUNCTION
+// default stat generation function
+// only generate vector int of stats
+// modifiers calculated in slots
+std::vector<int> MainWindow::generateStats() {
+    std::vector<int> stats;
+
+    for (int i = 0; i < 6; i++) {
+
+        // new way, roll 4d6, remove smallest number
+        std::vector <int> tempStat;
+        int tempVal;
+        for (int j = 0; j < 4; j++) {
+            tempVal = rand() % 6 + 1;
+            tempStat.push_back(tempVal);
+        }
+
+        // remove lowest value, index 0, after sorting
+        std::sort(tempStat.begin(), tempStat.begin() + 4);
+        tempStat.erase(tempStat.begin());
+
+        int stat = 0;
+        for (int x = 0; x < tempStat.size(); x++) {
+            stat += tempStat.at(x);
+        }
+
+        stats.push_back(stat);
+    }
+
+    return stats;
+}
+
+// HELPER FUNCTION
+// Setup the strings to append to display
+std::vector<int> MainWindow::createMods(std::vector<int> stats) {
+    std::vector<int> mods;
+    int mod = 0;
+
+    for (int i = 0; i < stats.size(); i++) {
+        mod = (stats.at(i) / 2) - 5;
+        mods.push_back(mod);
+    }
+
+    return mods;
+}
+
+QString MainWindow::createDisplayString(std::vector<QString> statsString, std::vector<QString> modsString) {
+    QString finalString = "";
+
+    finalString.append("Stats:\n");
 
     QString strengthLine = "STR  |  ";
     strengthLine.append(statsString.at(0));
@@ -112,73 +186,19 @@ void MainWindow::randomSlot() {
     charismaLine.append(" ");
     charismaLine.append(modsString.at(5));
 
-    disp->appendPlainText(strengthLine);
-    disp->appendPlainText(dexterityLine);
-    disp->appendPlainText(constitutionLine);
-    disp->appendPlainText(intelligenceLine);
-    disp->appendPlainText(wisdomLine);
-    disp->appendPlainText(charismaLine);
-}
+    finalString.append(strengthLine);
+    finalString.append("\n");
+    finalString.append(dexterityLine);
+    finalString.append("\n");
+    finalString.append(constitutionLine);
+    finalString.append("\n");
+    finalString.append(intelligenceLine);
+    finalString.append("\n");
+    finalString.append(wisdomLine);
+    finalString.append("\n");
+    finalString.append(charismaLine);
+    finalString.append("\n");
 
-//void MainWindow::createMods() {
-
-//}
-
-//void MainWindow::createMods() {
-
-//}
-
-//void MainWindow::createMods() {
-
-//}
-
-// HELPER FUNCTION
-// default stat generation function
-// only generate vector int of stats
-// modifiers calculated in slots
-vector<int> generateStats() {
-
-    for (int i = 0; i < 6; i++) {
-
-        // new way, roll 4d6, remove smallest number
-        std::vector <int> tempStat;
-        int tempVal;
-        for (int j = 0; j < 4; j++) {
-            tempVal = rand() % 6 + 1;
-            tempStat.push_back(tempVal);
-        }
-
-        // remove lowest value, index 0, after sorting
-        std::sort(tempStat.begin(), tempStat.begin() + 4);
-        tempStat.erase(tempStat.begin());
-
-        int stat = 0;
-        for (int x = 0; x < tempStat.size(); x++) {
-            stat += tempStat.at(x);
-        }
-
-        QString statString = QString::number(stat);
-
-        int mod = (stat / 2) - 5;
-
-        QString modString = "(";
-        if (mod > -1) {
-            modString.append("+");
-        }
-        modString.append(QString::number(mod));
-        modString.append(")");
-
-        statsString.push_back(statString);
-        modsString.push_back(modString);
-
-        stats.push_back(stat);
-        mods.push_back(mod);
-    }
-}
-
-// HELPER FUNCTION
-// Setup the strings to append to display
-vector<int> createMods() {
-
+    return finalString;
 }
 
