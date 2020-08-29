@@ -1,1 +1,2 @@
-# Summer2018PersonalProject1
+# DnD Stats Roller
+Summer2018PersonalProject1
