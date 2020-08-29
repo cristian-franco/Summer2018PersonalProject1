@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setWindowTitle("DnD Character Center");
+    setStyleSheet("QMainWindow {background: 'grey';}");
 
     //std::vector <int> stats;
 
@@ -150,6 +151,9 @@ std::vector<int> MainWindow::createMods(std::vector<int> stats) {
 
     return mods;
 }
+
+// HELPER FUNCTION
+// Creates string to put on the rightside label
 
 QString MainWindow::createDisplayString(std::vector<QString> statsString, std::vector<QString> modsString) {
     QString finalString = "";
