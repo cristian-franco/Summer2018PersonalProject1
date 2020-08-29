@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //statDisplay->setObjectName("STATS");
     QLabel* statDisplay = new QLabel();
     statDisplay->setObjectName("STATS");
+    statDisplay->setTextInteractionFlags(Qt::TextSelectableByMouse);
 
     QWidget* mainWidget = new QWidget();
     QHBoxLayout* layoutHoriz = new QHBoxLayout();
