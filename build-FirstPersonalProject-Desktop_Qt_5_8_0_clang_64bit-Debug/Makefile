@@ -13,9 +13,9 @@ MAKEFILE      = Makefile
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
-CFLAGS        = -pipe -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_CFLAGS) -g -Wall -W -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_CFLAGS) -g -std=gnu++11 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I../FirstPersonalProject -I. -I/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/cristianfranco/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/cristianfranco/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Users/cristianfranco/Qt/5.8/clang_64/mkspecs/macx-clang -F/Users/cristianfranco/Qt/5.8/clang_64/lib
+CFLAGS        = -pipe -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_CFLAGS) -g -Wall -W -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_CFLAGS) -g -std=gnu++11 -Wall -W -fPIC $(DEFINES)
+INCPATH       = -I../FirstPersonalProject -I. -I/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/cristianfranco/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/cristianfranco/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Users/cristianfranco/Qt/5.8/clang_64/mkspecs/macx-clang -F/Users/cristianfranco/Qt/5.8/clang_64/lib
 QMAKE         = /Users/cristianfranco/Qt/5.8/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -35,7 +35,7 @@ COMPRESS      = gzip -9f
 DISTNAME      = FirstPersonalProject1.0.0
 DISTDIR = /Users/cristianfranco/Documents/PersonalProjects/QT/Summer2018PersonalProject1/Summer2018PersonalProject1/build-FirstPersonalProject-Desktop_Qt_5_8_0_clang_64bit-Debug/.tmp/FirstPersonalProject1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-LFLAGS        = -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_LFLAGS) -Wl,-rpath,/Users/cristianfranco/Qt/5.8/clang_64/lib
+LFLAGS        = -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_LFLAGS) -Wl,-rpath,/Users/cristianfranco/Qt/5.8/clang_64/lib
 LIBS          = $(SUBLIBS) -F/Users/cristianfranco/Qt/5.8/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
@@ -666,7 +666,7 @@ compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /Users/cristianfranco/Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_CFLAGS) -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /Users/cristianfranco/Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_CFLAGS) -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /Users/cristianfranco/Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
@@ -675,15 +675,19 @@ moc_mainwindow.cpp: /Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framewor
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
-		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QPlainTextEdit \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qplaintextedit.h \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QTextStream \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
 		../FirstPersonalProject/mainwindow.h \
 		moc_predefs.h \
 		/Users/cristianfranco/Qt/5.8/clang_64/bin/moc
-	/Users/cristianfranco/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/cristianfranco/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/cristianfranco/Documents/PersonalProjects/QT/Summer2018PersonalProject1/Summer2018PersonalProject1/FirstPersonalProject -I/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/cristianfranco/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/cristianfranco/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/cristianfranco/Qt/5.8/clang_64/lib ../FirstPersonalProject/mainwindow.h -o moc_mainwindow.cpp
+	/Users/cristianfranco/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/cristianfranco/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/cristianfranco/Documents/PersonalProjects/QT/Summer2018PersonalProject1/Summer2018PersonalProject1/FirstPersonalProject -I/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/cristianfranco/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/cristianfranco/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -F/Users/cristianfranco/Qt/5.8/clang_64/lib ../FirstPersonalProject/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -711,11 +715,15 @@ main.o: ../FirstPersonalProject/main.cpp ../FirstPersonalProject/mainwindow.h \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
-		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QPlainTextEdit \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qplaintextedit.h \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QTextStream \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../FirstPersonalProject/main.cpp
@@ -725,11 +733,15 @@ mainwindow.o: ../FirstPersonalProject/mainwindow.cpp ../FirstPersonalProject/mai
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
-		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QPlainTextEdit \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qplaintextedit.h \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtCore.framework/Headers/QTextStream \
+		/Users/cristianfranco/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../FirstPersonalProject/mainwindow.cpp
 

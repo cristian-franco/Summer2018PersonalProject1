@@ -53,14 +53,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // connect all button signals to same slot that will take argument and generate stats
     connect(buttonRandom, SIGNAL (clicked()), this, SLOT (randomSlot()));
-//    connect(buttonBarbarian, SIGNAL (clicked()), this, SLOT (createMods()));
-//    connect(buttonBard, SIGNAL (clicked()), this, SLOT (createMods()));
-//    connect(buttonDruid, SIGNAL (clicked()), this, SLOT (createMods()));
-//    connect(buttonMonk, SIGNAL (clicked()), this, SLOT (createMods()));
-//    connect(buttonPaladin, SIGNAL (clicked()), this, SLOT (createMods()));
-//    connect(buttonRanger, SIGNAL (clicked()), this, SLOT (createMods()));
-//    connect(buttonSorcerer, SIGNAL (clicked()), this, SLOT (createMods()));
-//    connect(buttonWarlock, SIGNAL (clicked()), this, SLOT (createMods()));
+    connect(buttonBarbarian, SIGNAL (clicked()), this, SLOT (barbarianSlot()));
+    connect(buttonBard, SIGNAL (clicked()), this, SLOT (bardSlot()));
+    connect(buttonDruid, SIGNAL (clicked()), this, SLOT (druidSlot()));
+    connect(buttonMonk, SIGNAL (clicked()), this, SLOT (monkSlot()));
+    connect(buttonPaladin, SIGNAL (clicked()), this, SLOT (paladinSlot()));
+    connect(buttonRanger, SIGNAL (clicked()), this, SLOT (rangerSlot()));
+    connect(buttonSorcerer, SIGNAL (clicked()), this, SLOT (sorcererSlot()));
+    connect(buttonWarlock, SIGNAL (clicked()), this, SLOT (warlockSlot()));
 
 }
 
@@ -69,43 +69,322 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// SLOTS
 
 void MainWindow::randomSlot() {
 
     // findChildren returns a QList of type in <>
     // findChild will return a single object of type in <>
     //QPlainTextEdit* disp = centralWidget()->findChild<QPlainTextEdit *>("STATS");
+
     QLabel* disp = centralWidget()->findChild<QLabel *>("STATS");
 
     stats.clear();
     mods.clear();
     statsString.clear();
     modsString.clear();
+    classMods.clear();
 
     std::vector<int> stats = generateStats();
     std::vector<int> mods = createMods(stats);
-//------------------
-    for (int g = 0; g < 6; g++) {
-        QString statString = QString::number(stats.at(g));
 
-        QString modString = "(";
-        if (mods.at(g) > -1) {
-            modString.append("+");
-        }
-        modString.append(QString::number(mods.at(g)));
-        modString.append(")");
+    for (int g = 0; g < 6; g++) {    
+
+        QString statString = QString::number(stats.at(g));
+        QString modString = createModsString(mods, g);
 
         statsString.push_back(statString);
         modsString.push_back(modString);
     }
 
-//----------------
     // label
     QString finalString = createDisplayString(statsString, modsString);
 
     disp->setText(finalString);
-
 }
+
+void MainWindow::barbarianSlot() {
+    QLabel* disp = centralWidget()->findChild<QLabel *>("STATS");
+
+    stats.clear();
+    mods.clear();
+    statsString.clear();
+    modsString.clear();
+    classMods.clear();
+
+    std::vector<int> stats = generateStats();
+
+    for (int b = 0; b < 6; b++) {
+        classMods.push_back(10);
+    }
+
+    for (int c = 0; c < 6; c++) {
+        stats.at(c) = stats.at(c) + classMods.at(c);
+    }
+
+    std::vector<int> mods = createMods(stats);
+
+    for (int g = 0; g < 6; g++) {
+
+        QString statString = QString::number(stats.at(g));
+        QString modString = createModsString(mods, g);
+
+        statsString.push_back(statString);
+        modsString.push_back(modString);
+    }
+
+    QString finalString = createDisplayString(statsString, modsString);
+
+    disp->setText(finalString);
+}
+
+void MainWindow::bardSlot() {
+    QLabel* disp = centralWidget()->findChild<QLabel *>("STATS");
+
+    stats.clear();
+    mods.clear();
+    statsString.clear();
+    modsString.clear();
+    classMods.clear();
+
+    std::vector<int> stats = generateStats();
+
+    for (int b = 0; b < 6; b++) {
+        classMods.push_back(20);
+    }
+
+    for (int c = 0; c < 6; c++) {
+        stats.at(c) = stats.at(c) + classMods.at(c);
+    }
+
+    std::vector<int> mods = createMods(stats);
+
+    for (int g = 0; g < 6; g++) {
+
+        QString statString = QString::number(stats.at(g));
+        QString modString = createModsString(mods, g);
+
+        statsString.push_back(statString);
+        modsString.push_back(modString);
+    }
+
+    QString finalString = createDisplayString(statsString, modsString);
+
+    disp->setText(finalString);
+}
+
+void MainWindow::druidSlot() {
+    QLabel* disp = centralWidget()->findChild<QLabel *>("STATS");
+
+    stats.clear();
+    mods.clear();
+    statsString.clear();
+    modsString.clear();
+    classMods.clear();
+
+    std::vector<int> stats = generateStats();
+
+    for (int b = 0; b < 6; b++) {
+        classMods.push_back(30);
+    }
+
+    for (int c = 0; c < 6; c++) {
+        stats.at(c) = stats.at(c) + classMods.at(c);
+    }
+
+    std::vector<int> mods = createMods(stats);
+
+    for (int g = 0; g < 6; g++) {
+
+        QString statString = QString::number(stats.at(g));
+        QString modString = createModsString(mods, g);
+
+        statsString.push_back(statString);
+        modsString.push_back(modString);
+    }
+
+    QString finalString = createDisplayString(statsString, modsString);
+
+    disp->setText(finalString);
+}
+
+void MainWindow::monkSlot() {
+    QLabel* disp = centralWidget()->findChild<QLabel *>("STATS");
+
+    stats.clear();
+    mods.clear();
+    statsString.clear();
+    modsString.clear();
+    classMods.clear();
+
+    std::vector<int> stats = generateStats();
+
+    for (int b = 0; b < 6; b++) {
+        classMods.push_back(40);
+    }
+
+    for (int c = 0; c < 6; c++) {
+        stats.at(c) = stats.at(c) + classMods.at(c);
+    }
+
+    std::vector<int> mods = createMods(stats);
+
+    for (int g = 0; g < 6; g++) {
+
+        QString statString = QString::number(stats.at(g));
+        QString modString = createModsString(mods, g);
+
+        statsString.push_back(statString);
+        modsString.push_back(modString);
+    }
+
+    QString finalString = createDisplayString(statsString, modsString);
+
+    disp->setText(finalString);
+}
+
+void MainWindow::paladinSlot() {
+    QLabel* disp = centralWidget()->findChild<QLabel *>("STATS");
+
+    stats.clear();
+    mods.clear();
+    statsString.clear();
+    modsString.clear();
+    classMods.clear();
+
+    std::vector<int> stats = generateStats();
+
+    for (int b = 0; b < 6; b++) {
+        classMods.push_back(50);
+    }
+
+    for (int c = 0; c < 6; c++) {
+        stats.at(c) = stats.at(c) + classMods.at(c);
+    }
+
+    std::vector<int> mods = createMods(stats);
+
+    for (int g = 0; g < 6; g++) {
+
+        QString statString = QString::number(stats.at(g));
+        QString modString = createModsString(mods, g);
+
+        statsString.push_back(statString);
+        modsString.push_back(modString);
+    }
+
+    QString finalString = createDisplayString(statsString, modsString);
+
+    disp->setText(finalString);
+}
+
+void MainWindow::rangerSlot() {
+    QLabel* disp = centralWidget()->findChild<QLabel *>("STATS");
+
+    stats.clear();
+    mods.clear();
+    statsString.clear();
+    modsString.clear();
+    classMods.clear();
+
+    std::vector<int> stats = generateStats();
+
+    for (int b = 0; b < 6; b++) {
+        classMods.push_back(60);
+    }
+
+    for (int c = 0; c < 6; c++) {
+        stats.at(c) = stats.at(c) + classMods.at(c);
+    }
+
+    std::vector<int> mods = createMods(stats);
+
+    for (int g = 0; g < 6; g++) {
+
+        QString statString = QString::number(stats.at(g));
+        QString modString = createModsString(mods, g);
+
+        statsString.push_back(statString);
+        modsString.push_back(modString);
+    }
+
+    QString finalString = createDisplayString(statsString, modsString);
+
+    disp->setText(finalString);
+}
+
+void MainWindow::sorcererSlot() {
+    QLabel* disp = centralWidget()->findChild<QLabel *>("STATS");
+
+    stats.clear();
+    mods.clear();
+    statsString.clear();
+    modsString.clear();
+    classMods.clear();
+
+    std::vector<int> stats = generateStats();
+
+    for (int b = 0; b < 6; b++) {
+        classMods.push_back(70);
+    }
+
+    for (int c = 0; c < 6; c++) {
+        stats.at(c) = stats.at(c) + classMods.at(c);
+    }
+
+    std::vector<int> mods = createMods(stats);
+
+    for (int g = 0; g < 6; g++) {
+
+        QString statString = QString::number(stats.at(g));
+        QString modString = createModsString(mods, g);
+
+        statsString.push_back(statString);
+        modsString.push_back(modString);
+    }
+
+    QString finalString = createDisplayString(statsString, modsString);
+
+    disp->setText(finalString);
+}
+
+void MainWindow::warlockSlot() {
+    QLabel* disp = centralWidget()->findChild<QLabel *>("STATS");
+
+    stats.clear();
+    mods.clear();
+    statsString.clear();
+    modsString.clear();
+    classMods.clear();
+
+    std::vector<int> stats = generateStats();
+
+    for (int b = 0; b < 6; b++) {
+        classMods.push_back(80);
+    }
+
+    for (int c = 0; c < 6; c++) {
+        stats.at(c) = stats.at(c) + classMods.at(c);
+    }
+
+    std::vector<int> mods = createMods(stats);
+
+    for (int g = 0; g < 6; g++) {
+
+        QString statString = QString::number(stats.at(g));
+        QString modString = createModsString(mods, g);
+
+        statsString.push_back(statString);
+        modsString.push_back(modString);
+    }
+
+    QString finalString = createDisplayString(statsString, modsString);
+
+    disp->setText(finalString);
+}
+
+
+
 
 // HELPER FUNCTION
 // default stat generation function
@@ -151,6 +430,20 @@ std::vector<int> MainWindow::createMods(std::vector<int> stats) {
     }
 
     return mods;
+}
+
+// HELPER FUNCTION
+// Turns mods vector into string
+QString MainWindow::createModsString(std::vector <int> mods, int g) {
+
+    QString modString = "(";
+    if (mods.at(g) > -1) {
+        modString.append("+");
+    }
+    modString.append(QString::number(mods.at(g)));
+    modString.append(")");
+
+    return modString;
 }
 
 // HELPER FUNCTION

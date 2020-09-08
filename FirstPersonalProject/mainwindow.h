@@ -24,25 +24,40 @@ class MainWindow : public QMainWindow {
     public:
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
-        QTextEdit* statDisplay;
+        //QTextEdit* statDisplay;
 
     private:
         Ui::MainWindow *ui;
         QWidget* mainWidget;
-        QWidget* buttonWidget;
-        QHBoxLayout* layoutHoriz;
-        QVBoxLayout* layoutVert;
-        QPushButton* buttonRandom;
-        std::vector <int> stats, mods;
+        //QWidget* buttonWidget;
+        //QHBoxLayout* layoutHoriz;
+        //QVBoxLayout* layoutVert;
+        //QPushButton* buttonRandom;
+        QLabel* statDisplay;
+
+
+        std::vector <int> stats, mods, classMods;
         std::vector <QString> statsString, modsString;
+
         std::vector<int> generateStats();
         std::vector<int> createMods(std::vector<int> stats);
+
         QString createDisplayString(std::vector<QString> statsString, std::vector<QString> modsString);
+        QString createModsString(std::vector <int> mods, int g);
 
 
 
-    public slots:
+    private slots:
         void randomSlot();
+        void barbarianSlot();
+        void bardSlot();
+        void druidSlot();
+        void monkSlot();
+        void paladinSlot();
+        void rangerSlot();
+        void sorcererSlot();
+        void warlockSlot();
+
 
 
 
