@@ -9,12 +9,40 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowTitle("DnD Character Center");
     setStyleSheet("QMainWindow {background: 'grey';}");
+    //setBaseSize(500, 500);
 
-    //std::vector <int> stats;
+    QWidget* raceWidget = new QWidget;
+    QVBoxLayout* layoutRace = new QVBoxLayout;
+    QPushButton* buttonDwarf = new QPushButton("Dwarf");
+    QPushButton* buttonElf = new QPushButton("Elf");
+    QPushButton* buttonHalfling = new QPushButton("Halfling");
+    QPushButton* buttonHuman = new QPushButton("Human");
+    QPushButton* buttonDragonborn = new QPushButton("Dragonborn");
+    QPushButton* buttonGnome = new QPushButton("Gnome");
+    QPushButton* buttonHalfElf = new QPushButton("Half-Elf");
+    QPushButton* buttonHalfOrc = new QPushButton("Half-Orc");
+    QPushButton* buttonTiefling = new QPushButton("Tiefling");
+
+    QLabel* raceMods = new QLabel;
+    raceMods->setObjectName("RaceMods");
+    raceMods->setText("RACE MODS");
+
+
+    layoutRace->addWidget(buttonDwarf);
+    layoutRace->addWidget(buttonElf);
+    layoutRace->addWidget(buttonHalfling);
+    layoutRace->addWidget(buttonHuman);
+    layoutRace->addWidget(buttonDragonborn);
+    layoutRace->addWidget(buttonGnome);
+    layoutRace->addWidget(buttonHalfElf);
+    layoutRace->addWidget(buttonHalfOrc);
+    layoutRace->addWidget(buttonTiefling);
+    layoutRace->addWidget(raceMods);
+    raceWidget->setLayout(layoutRace);
+
 
     QWidget* buttonWidget = new QWidget;
     QVBoxLayout* layoutVert = new QVBoxLayout;
-    QPushButton* buttonRandom = new QPushButton("Random");
     QPushButton* buttonBarbarian = new QPushButton("Barbarian");
     QPushButton* buttonBard = new QPushButton("Bard");
     QPushButton* buttonDruid = new QPushButton("Druid");
@@ -23,8 +51,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QPushButton* buttonRanger = new QPushButton("Ranger");
     QPushButton* buttonSorcerer = new QPushButton("Sorcerer");
     QPushButton* buttonWarlock = new QPushButton("Warlock");
+    QPushButton* buttonWizard = new QPushButton("Wizard");
 
-    layoutVert->addWidget(buttonRandom);
+    QLabel* classMods = new QLabel;
+    classMods->setObjectName("ClassMods");
+    classMods->setText("CLASS MODS");
+
+    //layoutVert->addWidget(buttonRandom);
     layoutVert->addWidget(buttonBarbarian);
     layoutVert->addWidget(buttonBard);
     layoutVert->addWidget(buttonDruid);
@@ -33,25 +66,29 @@ MainWindow::MainWindow(QWidget *parent) :
     layoutVert->addWidget(buttonRanger);
     layoutVert->addWidget(buttonSorcerer);
     layoutVert->addWidget(buttonWarlock);
+    layoutVert->addWidget(buttonWizard);
+    layoutVert->addWidget(classMods);
     buttonWidget->setLayout(layoutVert);
 
-    //QPlainTextEdit* statDisplay = new QPlainTextEdit();
-    //statDisplay->setObjectName("STATS");
+    QPushButton* buttonRandom = new QPushButton("Random");
+
     QLabel* statDisplay = new QLabel();
     statDisplay->setObjectName("STATS");
     statDisplay->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    statDisplay->setStyleSheet("QLabel { background-color : white; color : black; }");
 
     QWidget* mainWidget = new QWidget();
     QHBoxLayout* layoutHoriz = new QHBoxLayout();
 
+    layoutHoriz->addWidget(raceWidget);
     layoutHoriz->addWidget(buttonWidget);
+    layoutHoriz->addWidget(buttonRandom);
     layoutHoriz->addWidget(statDisplay);
 
     mainWidget->setLayout(layoutHoriz);
 
     setCentralWidget(mainWidget);
 
-    // connect all button signals to same slot that will take argument and generate stats
     connect(buttonRandom, SIGNAL (clicked()), this, SLOT (randomSlot()));
     connect(buttonBarbarian, SIGNAL (clicked()), this, SLOT (barbarianSlot()));
     connect(buttonBard, SIGNAL (clicked()), this, SLOT (bardSlot()));
@@ -384,9 +421,8 @@ void MainWindow::warlockSlot() {
 }
 
 
+// HELPER FUNCTIONS
 
-
-// HELPER FUNCTION
 // default stat generation function
 // only generate vector int of stats
 // modifiers calculated in slots
@@ -418,7 +454,6 @@ std::vector<int> MainWindow::generateStats() {
     return stats;
 }
 
-// HELPER FUNCTION
 // Setup the strings to append to display
 std::vector<int> MainWindow::createMods(std::vector<int> stats) {
     std::vector<int> mods;
@@ -432,7 +467,6 @@ std::vector<int> MainWindow::createMods(std::vector<int> stats) {
     return mods;
 }
 
-// HELPER FUNCTION
 // Turns mods vector into string
 QString MainWindow::createModsString(std::vector <int> mods, int g) {
 
@@ -446,9 +480,7 @@ QString MainWindow::createModsString(std::vector <int> mods, int g) {
     return modString;
 }
 
-// HELPER FUNCTION
 // Creates string to put on the rightside label
-
 QString MainWindow::createDisplayString(std::vector<QString> statsString, std::vector<QString> modsString) {
     QString finalString = "";
 
