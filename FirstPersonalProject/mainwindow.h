@@ -35,6 +35,8 @@ class MainWindow : public QMainWindow {
         //QPushButton* buttonRandom;
         QLabel* statDisplay;
 
+        std::vector <int> specRaceMods, specClassMods;
+
 
         std::vector <int> stats, mods, classMods;
         std::vector <QString> statsString, modsString;

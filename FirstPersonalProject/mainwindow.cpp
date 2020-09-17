@@ -13,12 +13,47 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QWidget* raceWidget = new QWidget;
     QVBoxLayout* layoutRace = new QVBoxLayout;
-    QPushButton* buttonDwarf = new QPushButton("Dwarf");
-    QPushButton* buttonElf = new QPushButton("Elf");
-    QPushButton* buttonHalfling = new QPushButton("Halfling");
+
+    QWidget* dwarfWidget = new QWidget;
+    QHBoxLayout* layoutDwarf = new QHBoxLayout();
+    QPushButton* buttonHillDwarf = new QPushButton("Hill Dwarf");
+    QPushButton* buttonMountainDwarf = new QPushButton("Mountain Dwarf");
+    layoutDwarf->addWidget(buttonHillDwarf);
+    layoutDwarf->addWidget(buttonMountainDwarf);
+    dwarfWidget->setLayout(layoutDwarf);
+
+    QWidget* elfWidget = new QWidget;
+    QHBoxLayout* layoutElf = new QHBoxLayout();
+    QPushButton* buttonHighElf = new QPushButton("High Elf");
+    QPushButton* buttonWoodElf = new QPushButton("Wood Elf");
+    QPushButton* buttonDarkElf = new QPushButton("Dark Elf (Drow)");
+    layoutElf->addWidget(buttonHighElf);
+    layoutElf->addWidget(buttonWoodElf);
+    layoutElf->addWidget(buttonDarkElf);
+    elfWidget->setLayout(layoutElf);
+
+    QWidget* halflingWidget = new QWidget;
+    QHBoxLayout* layoutHalfling = new QHBoxLayout();
+    QPushButton* buttonLightfoot = new QPushButton("Lightfoot Halfling");
+    QPushButton* buttonStout = new QPushButton("Stout Halfling");
+    layoutHalfling->addWidget(buttonLightfoot);
+    layoutHalfling->addWidget(buttonStout);
+    halflingWidget->setLayout(layoutHalfling);
+
     QPushButton* buttonHuman = new QPushButton("Human");
+
     QPushButton* buttonDragonborn = new QPushButton("Dragonborn");
-    QPushButton* buttonGnome = new QPushButton("Gnome");
+
+    QWidget* gnomeWidget = new QWidget;
+    QHBoxLayout* layoutGnome = new QHBoxLayout();
+    QPushButton* buttonForestGnome = new QPushButton("Forest Gnome");
+    QPushButton* buttonRockGnome = new QPushButton("Rock Gnome");
+    layoutGnome->addWidget(buttonForestGnome);
+    layoutGnome->addWidget(buttonRockGnome);
+    gnomeWidget->setLayout(layoutGnome);
+
+
+
     QPushButton* buttonHalfElf = new QPushButton("Half-Elf");
     QPushButton* buttonHalfOrc = new QPushButton("Half-Orc");
     QPushButton* buttonTiefling = new QPushButton("Tiefling");
@@ -28,12 +63,12 @@ MainWindow::MainWindow(QWidget *parent) :
     raceMods->setText("RACE MODS");
 
 
-    layoutRace->addWidget(buttonDwarf);
-    layoutRace->addWidget(buttonElf);
-    layoutRace->addWidget(buttonHalfling);
+    layoutRace->addWidget(dwarfWidget);
+    layoutRace->addWidget(elfWidget);
+    layoutRace->addWidget(halflingWidget);
     layoutRace->addWidget(buttonHuman);
     layoutRace->addWidget(buttonDragonborn);
-    layoutRace->addWidget(buttonGnome);
+    layoutRace->addWidget(gnomeWidget);
     layoutRace->addWidget(buttonHalfElf);
     layoutRace->addWidget(buttonHalfOrc);
     layoutRace->addWidget(buttonTiefling);
